@@ -13,17 +13,10 @@ public class Dealer{
 		
 	}
 	
-	public boolean askCardFromDeck(Card newCard){
-		boolean dealerPass = false;
-		if(sumOfPoints < 18){
-			dealerHand.add(newCard);
-		}
-		else{
-			dealerPass = true;
-		}
+	public void askCardFromDeck(Card newCard){
+		dealerHand.add(newCard);
 		sumCardPoints();
-		System.out.println("Sum of cards: " + sumOfPoints);
-		return dealerPass;
+		//System.out.println("Sum of cards: " + sumOfPoints);
 	}
 	
 	private void sumCardPoints(){
@@ -31,12 +24,14 @@ public class Dealer{
 		for (int cardNumber = 0; cardNumber < dealerHand.size(); ++cardNumber){
 			sumOfPoints = sumOfPoints + dealerHand.get(cardNumber).getCardPoints();
 		}
+		/*
 		if (sumOfPoints > 21){
 			System.out.println("Your points exceed 21, you are out!");
 		}
 		else if (sumOfPoints == 21){
 			System.out.println("BLACKJACK!");
 		}
+		*/
 	}
 	
 	public String showDealerHand(){
@@ -44,7 +39,12 @@ public class Dealer{
 		for (int cardNumber = 0; cardNumber < dealerHand.size(); ++cardNumber)
 		{
 			if(dealerHand.size() == 2){
-				dealerHandString = dealerHandString + dealerHand.get(0).getCardName() + "\t" + "*face down*";
+				if (sumOfPoints == 21){
+					dealerHandString = dealerHandString + dealerHand.get(cardNumber).getCardName() + "\t";
+				}
+				else{
+					dealerHandString = dealerHandString + dealerHand.get(0).getCardName() + "\t" + "*face down*";
+				}
 				break;
 			}
 			else{
@@ -57,5 +57,12 @@ public class Dealer{
 	public void endGame(){
 		//Print when points are > 21 or leaves table
 		//update totalScore
+	}
+	
+	public int getSumOfPoints(){
+		return sumOfPoints;
+	}
+	public void resetHand(){
+		this.dealerHand.clear();
 	}
 }

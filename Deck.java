@@ -60,6 +60,7 @@ public class Deck{
 		for (int i = 0; i < numberOfCardsInDeck; ++i){
 			deckArray[i] = shuffledDeckArray[i];
 		}	
+		this.deckTop = 0;
 	}
 	
 	public Card getCardFromDeck(){
@@ -79,4 +80,11 @@ public class Deck{
 		System.out.println(deckString);
 	}
 	
+	public int getDeckTop(){
+		return deckTop;
+	}
+	
+	public int getNumberOfCardsInDeck(){
+		return numberOfCardsInDeck;
+	}
 }

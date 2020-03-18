@@ -47,4 +47,8 @@ public class Card{
 	public int getCardPoints(){
 		return points;
 	}
+	
+	public char getFace(){
+		return face;
+	}
 }
